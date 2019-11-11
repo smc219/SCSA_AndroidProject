@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ReviewApp</string>
+    <string name="sendBut">Send</string>
+    <string name="editBut">Edit</string>
+    <string name="saveBut">Save</string>
+    <string name="cancelBut">Cancel</string>
+    <string name="nameView">Name</string>
+</resources>
