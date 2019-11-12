@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">TestMemo</string>
+    <string name="addMemoBut">메모추가</string>
+</resources>

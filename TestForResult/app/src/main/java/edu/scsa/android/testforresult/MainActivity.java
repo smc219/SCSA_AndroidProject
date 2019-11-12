@@ -32,12 +32,22 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == 2 && resultCode == RESULT_OK && data != null) {
-            String str = data.getStringExtra("edited");
-
-            textView2.setText(str);
-
+        switch (requestCode) {
+            case EDIT_MODE :
+                if (resultCode == RESULT_OK) {
+                    String str = data.getStringExtra("data");
+                    textView2.setText(str);
+                }
+            break;
+            case SEARCH_MODE:
+                break;
         }
+//        if(requestCode == 2 && resultCode == RESULT_OK) {
+//            String str = data.getStringExtra("edited");
+//
+//            textView2.setText(str);
+//
+//        }
 
     }
 }
