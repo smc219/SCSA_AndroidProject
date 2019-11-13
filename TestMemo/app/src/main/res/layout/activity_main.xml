@@ -7,22 +7,10 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView3"
+    <ListView
+        android:id="@+id/memolV"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-       android:layout_marginBottom="10dp"
-        android:textSize="20dp"
-        android:text="새로운 메모를 적어주십시오" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:textSize="20dp"
-        android:text="새로운 메모를 적어주십시오" />
+        android:layout_height="450dp" />
 
     <Button
         android:id="@+id/addMemoBut"
@@ -31,4 +19,5 @@
         android:layout_marginTop="50dp"
         android:layout_marginBottom="10dp"
         android:text="@string/addMemoBut" />
+
 </LinearLayout>
