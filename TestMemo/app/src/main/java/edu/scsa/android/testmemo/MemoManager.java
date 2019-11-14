@@ -1,5 +1,8 @@
 package edu.scsa.android.testmemo;
 
+import android.util.Log;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 
 public class MemoManager {
@@ -17,25 +20,29 @@ public class MemoManager {
     }
 
     int addMemo(Memo m) {
-        for (Memo memo : memoList) {
-            if(memo.getTitle().equals(m.getTitle())) {
-                return -1;
-            }
-        }
+        if (getMemo(m.getTitle()) != null) return -1;
+
         memoList.add(0,m);
         return memoList.size();
     }
 
     void updateMemo(String title, Memo m) {
         int i;
-        for (i = 0; i < memoList.size(); i++) {
-            if (memoList.get(i).getTitle().equals(title)) break;
-        }
+        Memo t = getMemo(title);
+        if(t == null) return;
+
+        i = memoList.indexOf(t);
         memoList.remove(i);
         memoList.add(i, m);
     }
 
-    void deleteMemo(String title){}
+    void deleteMemo(String title){
+
+        if(getMemo(title) != null) {
+            memoList.remove(getMemo(title));
+        };
+
+    }
 
     Memo getMemo(String title) {
         for (int i = 0; i < memoList.size(); i++) {

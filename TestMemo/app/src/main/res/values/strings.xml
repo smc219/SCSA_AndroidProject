@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">TestMemo</string>
     <string name="addMemoBut">메모추가</string>
+    <string name="addBut">ADD</string>
+    <string name="versionBut">VERSION</string>
+    <string name="version">업데이트 안됨</string>
+    <string name="versionTitle">버전</string>
 </resources>

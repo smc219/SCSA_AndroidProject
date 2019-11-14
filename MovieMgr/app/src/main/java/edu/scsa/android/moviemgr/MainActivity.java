@@ -82,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
             ViewHolder viewHolder;
             // 그 로우의 view를 만들어서 return하는 함수.
             if (convertView == null) {
+
                 convertView = View.inflate(MainActivity.this, layout, null);
                 viewHolder = new ViewHolder();
                 viewHolder.mTv = convertView.findViewById(R.id.mTitleV);

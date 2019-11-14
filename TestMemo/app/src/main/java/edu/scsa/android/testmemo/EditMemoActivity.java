@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,6 +47,7 @@ public class EditMemoActivity extends AppCompatActivity  implements View.OnClick
 
         }
         else if (rCode == UPDATE_MODE) {
+
             String str[] = i.getExtras().getStringArray("edited");
             nameEdit.setText(str[0]);
             contentEdit.setText(str[1]);
