@@ -12,53 +12,58 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) { // 여기서 on이 붙는건 안드로이드가 실행. 자바로 얘기하면 constructor.
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main); // 레이아웃에 있는 main을 초기화시키라는 것. 레이아웃이 자바에서의 클래스 이름. android는 함수 이름에 매핑됨.
-        Toast.makeText(this, "Main onCreate", Toast.LENGTH_SHORT).show();
-        Log.e("INFO", "Main onCreate");
-    }
+    int curPage;
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) { // 여기서 on이 붙는건 안드로이드가 실행. 자바로 얘기하면 constructor.
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_main); // 레이아웃에 있는 main을 초기화시키라는 것. 레이아웃이 자바에서의 클래스 이름. android는 함수 이름에 매핑됨.
+//        Toast.makeText(this, "Main onCreate", Toast.LENGTH_SHORT).show();
+//        Log.e("INFO", "Main onCreate");
+//    }
 
-        Toast.makeText(this, "Main onStart", Toast.LENGTH_SHORT).show();
-        Log.e("INFO", "Main Start");
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//
+//        Toast.makeText(this, "Main onStart", Toast.LENGTH_SHORT).show();
+//        Log.e("INFO", "Main Start");
+//    }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Toast.makeText(this, "Main onResume", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Main onResume", Toast.LENGTH_SHORT).show();
         Log.e("INFO", "Main Resume");
+        curPage = getSharedPreferences("myData", MODE_PRIVATE).getInt("page", 0);
+        Toast.makeText(this, "curPage : " + curPage, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Toast.makeText(this, "Main onPause", Toast.LENGTH_SHORT).show();
+        getSharedPreferences("myData", MODE_PRIVATE).edit().putInt("page", ++curPage).commit();
+        Toast.makeText(this, "Page 정보를 저장했습니다...", Toast.LENGTH_SHORT).show();
     }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Toast.makeText(this, "Main onStop", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Toast.makeText(this, "Main onCreate", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Toast.makeText(this, "Main onDestroy", Toast.LENGTH_SHORT).show();
-    }
-
+//
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+////        Toast.makeText(this, "Main onStop", Toast.LENGTH_SHORT).show();
+//    }
+//
+//    @Override
+//    protected void onRestart() {
+//        super.onRestart();
+//        Toast.makeText(this, "Main onCreate", Toast.LENGTH_SHORT).show();
+//    }
+//
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        Toast.makeText(this, "Main onDestroy", Toast.LENGTH_SHORT).show();
+//    }
+//
     public void a1Call(View view) {
         Toast.makeText(this, "a1 Call...", Toast.LENGTH_SHORT).show();
         //같은 프로세스(같은 앱)에서 다른 컴포넌트를 호출.

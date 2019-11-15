@@ -103,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        AlertDialog.Builder b;
         switch (item.getItemId()) {
             case 1 :
                 i.putExtra("add", "update");
@@ -110,8 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(i, ADD_MODE);
                 break;
             case 2:
-                Toast.makeText(this, "button clicked", Toast.LENGTH_SHORT).show();
-                AlertDialog.Builder b = new AlertDialog.Builder(MainActivity.this).setMessage(R.string.version).setTitle(R.string.versionTitle).setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                b = new AlertDialog.Builder(MainActivity.this).setMessage(R.string.version).setTitle(R.string.versionTitle).setNegativeButton("cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
@@ -119,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
                 });
                 b.create().show();
                 break;
+
             default:
                 break;
 
