@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MyPrefUI</string>
+    <string name="default_values">MyPrefUI</string>
+    <string name="title_checkbox">소리설정</string>
+    <string name="summary_checkbox">checkbox 예제</string>
+    <string name="title_edittext">입력정보</string>
+    <string name="default_edittext">입력해주세요</string>
+    <string name="summary_edittext"> edit text dialog 예제</string>
+    <string name="dialog_title_edittext">좋아하는 과일을 입력해 주세요.</string>
+    <string name="title_list">선택하여 주세요</string>
+    <string name="summary_list"> list dialog 예제</string>
+    <string name="dialog_title_list">하나 선택해 주세요</string>
+    <string name="default_list">1</string>
+    <string name="default_value_edittext">Default value</string>
+
+</resources>

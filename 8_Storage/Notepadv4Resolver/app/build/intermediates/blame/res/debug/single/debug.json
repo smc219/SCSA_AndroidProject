@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "C:\\sdj_temp\\lab_conv\\8_Storage\\Notepadv4Resolver\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ic_launcher.png.flat",
+        "source": "C:\\sdj_temp\\lab_conv\\8_Storage\\Notepadv4Resolver\\app\\src\\main\\res\\drawable\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\sdj_temp\\lab_conv\\8_Storage\\Notepadv4Resolver\\app\\build\\intermediates\\res\\merged\\debug\\layout_note_edit.xml.flat",
+        "source": "C:\\sdj_temp\\lab_conv\\8_Storage\\Notepadv4Resolver\\app\\src\\main\\res\\layout\\note_edit.xml"
+    },
+    {
+        "merged": "C:\\sdj_temp\\lab_conv\\8_Storage\\Notepadv4Resolver\\app\\build\\intermediates\\res\\merged\\debug\\layout_notes_list.xml.flat",
+        "source": "C:\\sdj_temp\\lab_conv\\8_Storage\\Notepadv4Resolver\\app\\src\\main\\res\\layout\\notes_list.xml"
+    },
+    {
+        "merged": "C:\\sdj_temp\\lab_conv\\8_Storage\\Notepadv4Resolver\\app\\build\\intermediates\\res\\merged\\debug\\layout_notes_row.xml.flat",
+        "source": "C:\\sdj_temp\\lab_conv\\8_Storage\\Notepadv4Resolver\\app\\src\\main\\res\\layout\\notes_row.xml"
+    }
+]

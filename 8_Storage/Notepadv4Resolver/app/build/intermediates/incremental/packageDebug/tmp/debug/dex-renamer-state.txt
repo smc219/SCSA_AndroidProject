@@ -1,0 +1,4 @@
+#Thu Sep 19 08:37:33 KST 2019
+base.0=C\:\\sdj_temp\\lab_conv\\8_Storage\\Notepadv4Resolver\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out
+path.0=classes.dex
+renamed.0=classes.dex

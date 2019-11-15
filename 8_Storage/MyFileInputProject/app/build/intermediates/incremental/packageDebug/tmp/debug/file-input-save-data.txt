@@ -1,0 +1,11 @@
+#Internal package file, do not edit.
+#Thu Sep 19 08:34:43 KST 2019
+1.base=C\:\\sdj_temp\\lab_conv\\8_Storage\\MyFileInputProject\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out
+0.baseType=DIRECTORY
+1.baseType=DIRECTORY
+count=2
+1.set=DEX
+0.path=data.txt
+0.set=ASSET
+0.base=C\:\\sdj_temp\\lab_conv\\8_Storage\\MyFileInputProject\\app\\build\\intermediates\\merged_assets\\debug\\mergeDebugAssets\\out
+1.path=classes.dex

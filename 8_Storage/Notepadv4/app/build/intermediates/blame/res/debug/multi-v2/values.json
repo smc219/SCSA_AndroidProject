@@ -1,0 +1,26 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\sdj_temp\\lab_conv\\8_Storage\\Notepadv4\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+            "map": [
+                {
+                    "source": "C:\\sdj_temp\\lab_conv\\8_Storage\\Notepadv4\\app\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "3,8,9,10,6,5,4,7",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "56,292,330,374,203,154,104,252",
+                        "endColumns": "47,37,43,47,48,48,49,39",
+                        "endOffsets": "99,325,369,417,247,198,149,287"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,103,141,185,233,282,331,381",
+                        "endColumns": "47,37,43,47,48,48,49,39",
+                        "endOffsets": "98,136,180,228,277,326,376,416"
+                    }
+                }
+            ]
+        }
+    ]
+}

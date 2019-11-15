@@ -1,0 +1,26 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\sdj_temp\\lab_conv\\8_Storage\\MyFileInputProject\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+            "map": [
+                {
+                    "source": "C:\\sdj_temp\\lab_conv\\8_Storage\\MyFileInputProject\\app\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "4,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "119,56",
+                        "endColumns": "51,62",
+                        "endOffsets": "166,114"
+                    },
+                    "to": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,107",
+                        "endColumns": "51,62",
+                        "endOffsets": "102,165"
+                    }
+                }
+            ]
+        }
+    ]
+}

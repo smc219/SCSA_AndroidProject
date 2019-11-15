@@ -1,0 +1,4 @@
+#Fri Nov 15 13:46:40 KST 2019
+base.0=C\:\\8_Storage\\Notepadv3\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\4
+path.0=classes.dex
+renamed.0=classes.dex

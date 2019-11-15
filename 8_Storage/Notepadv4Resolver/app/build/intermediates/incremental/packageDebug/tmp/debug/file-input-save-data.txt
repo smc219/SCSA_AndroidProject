@@ -1,0 +1,7 @@
+#Internal package file, do not edit.
+#Thu Sep 19 08:37:33 KST 2019
+0.baseType=DIRECTORY
+0.base=C\:\\sdj_temp\\lab_conv\\8_Storage\\Notepadv4Resolver\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out
+0.path=classes.dex
+0.set=DEX
+count=1

@@ -1,0 +1,26 @@
+{
+    "logs": [
+        {
+            "outputFile": "C:\\sdj_temp\\lab_conv\\8_Storage\\Notepadv4Resolver\\app\\build\\intermediates\\res\\merged\\debug\\values_values.arsc.flat",
+            "map": [
+                {
+                    "source": "C:\\sdj_temp\\lab_conv\\8_Storage\\Notepadv4Resolver\\app\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "2,7,8,9,5,4,3,6",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,299,337,381,210,161,111,259",
+                        "endColumns": "55,37,43,47,48,48,49,39",
+                        "endOffsets": "106,332,376,424,254,205,156,294"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,111,149,193,241,290,339,389",
+                        "endColumns": "55,37,43,47,48,48,49,39",
+                        "endOffsets": "106,144,188,236,285,334,384,424"
+                    }
+                }
+            ]
+        }
+    ]
+}
