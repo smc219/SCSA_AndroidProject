@@ -39,17 +39,22 @@ public class MainActivity extends AppCompatActivity {
         pIndent = PendingIntent.getActivity(this, 0, i, 0);
 
         // 3. 인텐트 필터 생성
-        IntentFilter ndefFilter = new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED);
-        IntentFilter ndefFilter2 = new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED);
-        IntentFilter ndefFilter3 = new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED);
-        filters = new IntentFilter[]{ndefFilter, ndefFilter2, ndefFilter3};
-        try {
-            ndefFilter.addDataType("text/plain");
-            ndefFilter2.addDataScheme("https");
-            ndefFilter3.addDataScheme("http");
-        } catch (IntentFilter.MalformedMimeTypeException e) {
-            e.printStackTrace();
-        }
+//        IntentFilter ndefFilter = new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED);
+//        IntentFilter ndefFilter2 = new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED);
+//        IntentFilter ndefFilter3 = new IntentFilter(NfcAdapter.ACTION_NDEF_DISCOVERED);
+//        filters = new IntentFilter[]{ndefFilter, ndefFilter2, ndefFilter3};
+//        try {
+////            ndefFilter.addDataType("text/plain");
+////            ndefFilter2.addDataScheme("https");
+////            ndefFilter3.addDataScheme("http");
+//        } catch (IntentFilter.MalformedMimeTypeException e) {
+//            e.printStackTrace();
+//        }
+
+
+        IntentFilter tagFilter = new IntentFilter(NfcAdapter.ACTION_TAG_DISCOVERED);
+        filters = new IntentFilter[]{tagFilter};
+
 
     }
 

@@ -5,7 +5,10 @@ import android.net.Uri;
 import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
+import android.nfc.Tag;
+import android.nfc.tech.Ndef;
 import android.os.Parcelable;
+import android.os.RemoteException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -21,6 +24,21 @@ public class MainActivity extends AppCompatActivity {
         String action = i.getAction();
         if (action.equals(NfcAdapter.ACTION_NDEF_DISCOVERED)) processInt(i);
 
+    }
+
+    private NdefMessage makeNdefMsg(String data, String type) {
+        type = "URI";
+        data = "https://www.daum.net";
+        NdefMessage ndefMsg = null;
+        if (type.equals("URI")) {
+            NdefRecord uriR = NdefRecord.createUri(data);
+           // NdefRecord aarR = NdefRecord.createApplicationRecord();
+            NdefRecord[] recArr = new NdefRecord[]{uriR};
+            ndefMsg = new NdefMessage(recArr);
+
+        }
+
+        return ndefMsg;
     }
 
     private void processInt (Intent i) {
