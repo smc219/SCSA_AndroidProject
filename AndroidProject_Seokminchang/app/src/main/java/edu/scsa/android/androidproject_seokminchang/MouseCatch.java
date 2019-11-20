@@ -52,7 +52,7 @@ public class MouseCatch extends Activity {
         setContentView(R.layout.activity_mouse_catch);
         f=(FrameLayout) findViewById(R.id.frame);
         params=new FrameLayout.LayoutParams(1, 1);
-        to = new Timer();
+
 
         //디스플레이 크기 체크
         DisplayMetrics metrics = new DisplayMetrics();
@@ -79,7 +79,7 @@ public class MouseCatch extends Activity {
         threadEndFlag=true;
         this.nums=nums;
 
-
+        to = new Timer();
         delay=(int)(delay*(10-level)/10.);
         if(clearScore < 60) clearScore *= 2;
         f.removeAllViews();
@@ -154,6 +154,7 @@ public class MouseCatch extends Activity {
 
                 AlertDialog.Builder dia=new AlertDialog.Builder(MouseCatch.this);
                 dia.setMessage("계속하시겠습니까?");
+                dia.setCancelable(false);
                 dia.setPositiveButton("네", new OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         level++;
@@ -167,7 +168,10 @@ public class MouseCatch extends Activity {
                         finish();
                     }
                 });
-                dia.show();
+
+                AlertDialog d = dia.create();
+                d.setCanceledOnTouchOutside(false);
+                d.show();
 
 
             }
@@ -277,6 +281,7 @@ public class MouseCatch extends Activity {
                                 finish();
                             }
                         });
+                        dia.setCancelable(false);
                         dia.show();
 
                     }

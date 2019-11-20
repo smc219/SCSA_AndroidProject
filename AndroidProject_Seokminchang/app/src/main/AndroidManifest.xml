@@ -11,8 +11,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".TodoEdit"></activity>
         <activity
-            android:name=".Todo"
-            android:theme="@android:style/Theme.Holo.Light.DarkActionBar" />
+            android:name=".Todo"/>
         <activity android:name=".MouseCatch" />
         <activity android:name=".MainActivity">
             <intent-filter>

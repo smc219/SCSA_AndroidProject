@@ -10,15 +10,16 @@ import android.util.Log;
 
 public class TodoDBAdapter {
     private final Context mCtx;
-    private static final String DATABASE_NAME = "data";
+    private static final String DATABASE_NAME = "data228";
     private static final String DATABASE_TABLE = "notes";
     private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_CREATE =
-            "create table notes (_id integer primary key autoincrement, "
-                    + "title text not null, body text not null, finished not null);";
+            "create table notes (_id integer primary key autoincrement, "+ "title text not null, body text not null, finished integer not null, date text not null);";
     public static final String KEY_TITLE = "title";
     public static final String KEY_BODY = "body";
     public static final String KEY_ROWID = "_id";
+    public static final String KEY_FINISHED = "finished";
+    public static final String KEY_DATE = "date";
     private static final String TAG = "NotesDbAdapter";
     private DatabaseHelper mDbHelper;
     private SQLiteDatabase mDb;
@@ -43,6 +44,7 @@ public class TodoDBAdapter {
         }
 
 
+
     }
     // 콘텍스트를 받아서 생성
     public TodoDBAdapter(Context mCtx) {
@@ -59,12 +61,13 @@ public class TodoDBAdapter {
         mDbHelper.close();
     }
 
-    public long createTodo(String title, String body) {
+
+    public long createTodo(String title, String body, String todoDate) {
         ContentValues cv =new ContentValues();
         cv.put("title", title);
         cv.put("body", body);
-        cv.put("finished", "false");
-
+        cv.put("finished", 0);
+        cv.put("date", todoDate);
         return mDb.insert(DATABASE_TABLE, null, cv);
     }
     public boolean deleteTodo(long rowId) {
@@ -75,7 +78,7 @@ public class TodoDBAdapter {
     public Cursor fetchAllNotes() { //Cursor -> 가리키는 것.
 
         return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_TITLE,
-                KEY_BODY}, null, null, null, null, null);
+                KEY_BODY, KEY_FINISHED, KEY_DATE}, null, null, null, null, null);
     }
 
     public Cursor fetchNote(long rowId) throws SQLException {
@@ -83,7 +86,7 @@ public class TodoDBAdapter {
         Cursor mCursor =
 
                 mDb.query(true, DATABASE_TABLE, new String[] {KEY_ROWID,
-                                KEY_TITLE, KEY_BODY}, KEY_ROWID + "=" + rowId, null,
+                                KEY_TITLE, KEY_BODY, KEY_FINISHED, KEY_DATE}, KEY_ROWID + "=" + rowId, null,
                         null, null, null, null);
         if (mCursor != null) {
             mCursor.moveToFirst();
@@ -93,20 +96,23 @@ public class TodoDBAdapter {
     }
 
 
-    public boolean updateNote(long rowId, String title, String body, String finished) {
+    public boolean updateNote(long rowId, String title, String body, int finished, String todoDate) {
         ContentValues args = new ContentValues();
         args.put(KEY_TITLE, title);
         args.put(KEY_BODY, body);
-        args.put("finished", finished);
+        args.put(KEY_FINISHED, finished);
+        args.put(KEY_DATE, todoDate);
         return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
     }
 
-    public boolean updateNote(long rowId, String fstatus) {
+    public boolean updateNote(long rowId, int fstatus) {
         ContentValues args = new ContentValues();
-        Cursor updateC = mDb.query(true, DATABASE_TABLE, new String[] {KEY_ROWID,
-                                KEY_TITLE, KEY_BODY}, KEY_ROWID + "=" + rowId, null,
-                        null, null, null, null);
-        String title = updateC.getString(updateC.getColumnIndex(KEY_TITLE));
+        Log.i("INFO", "rowId" + rowId);
+//        Cursor updateC = mDb.query(true, DATABASE_TABLE, new String[] {KEY_ROWID,
+//                                KEY_TITLE, KEY_BODY, KEY_FINISHED}, KEY_ROWID + "=" + rowId, null,
+//                        null, null, null, null);
+        Cursor updateC = fetchNote(rowId);
+        String title = updateC.getString(1);
         String body = updateC.getString(updateC.getColumnIndex(KEY_BODY));
         Log.i("updateCheck", title + body);
         args.put(KEY_TITLE, title);
