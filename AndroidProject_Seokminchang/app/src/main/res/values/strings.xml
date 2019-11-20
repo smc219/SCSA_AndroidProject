@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">AndroidProject_Seokminchang</string>
+    <string name="title">Title</string>
+    <string name="body">Body</string>
+    <string name="addBut">ADD</string>
+    <string name="cancelBut">CANCEL</string>
+</resources>

@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity {
             super.run();
             while(btnumBack < 12220) {
                 final String sendData = "backT : " + ++btnumBack;
-//                Message msg = myH.obtainMessage(1, sendData); // what은 request Code같은 것
-//                myH.sendMessage(msg);
+                Message msg = myH.obtainMessage(1, sendData); // what은 request Code같은 것
+                myH.sendMessage(msg);
 //                myH.post(new Runnable() {
 //                    final String data = sendData;
 //                    @Override
@@ -56,15 +56,15 @@ public class MainActivity extends AppCompatActivity {
 //                        t2.setText(data);
 //                    }
 //                });
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        t2.setText(sendData);
-                    }
-                });
+//                runOnUiThread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//
+//                        t2.setText(sendData);
+//                    }
+//                });
                 try {
-                    sleep(6000);
+                    sleep(600);
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -75,11 +75,11 @@ public class MainActivity extends AppCompatActivity {
 
     Handler myH = new Handler() {
 
-//        @Override
-//        public void handleMessage(Message msg) {
-//            String sendD = msg.obj.toString();
-//            t2.setText(sendD);
-//        }
+        @Override
+        public void handleMessage(Message msg) {
+            String sendD = msg.obj.toString();
+            t2.setText(sendD);
+        }
     };
 
 
