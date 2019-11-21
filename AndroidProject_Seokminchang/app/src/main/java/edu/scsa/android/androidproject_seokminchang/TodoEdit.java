@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -57,6 +58,14 @@ public class TodoEdit extends AppCompatActivity {
         addBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (titleEt.getText().toString().trim().length() <= 0 ) {
+                    Toast.makeText(TodoEdit.this, "제목을 입력해주십시오.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (dateEt.getText().toString().trim().length() <= 0) {
+                    Toast.makeText(TodoEdit.this, "날짜를 입력해주십시오.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 setResult(RESULT_OK);
                 saveState();
                 finish();;

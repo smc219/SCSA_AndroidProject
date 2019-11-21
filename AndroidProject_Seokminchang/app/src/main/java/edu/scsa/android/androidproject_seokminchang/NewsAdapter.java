@@ -56,7 +56,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> 
             Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
             v.getContext().startActivity(i);
 
-
         }
     }
 

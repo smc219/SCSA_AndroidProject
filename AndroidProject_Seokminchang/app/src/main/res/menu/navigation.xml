@@ -4,20 +4,20 @@
     <item
         android:id="@+id/chosun"
         android:icon="@drawable/ic_looks_one_black_24dp"
-        android:title="@string/title_home" />
+        android:title="@string/chosunStr" />
 
     <item
         android:id="@+id/kyunghyang"
         android:icon="@drawable/ic_looks_two_black_24dp"
-        android:title="@string/title_dashboard" />
+        android:title="@string/khStr" />
 
     <item
         android:id="@+id/joongang"
         android:icon="@drawable/ic_looks_3_black_24dp"
-        android:title="@string/title_notifications" />
+        android:title="@string/joinsStr" />
     <item
         android:id="@+id/hankyeorae"
         android:icon="@drawable/ic_looks_4_black_24dp"
-        android:title="@string/title_notifications" />
+        android:title="@string/haniStr" />
 
 </menu>

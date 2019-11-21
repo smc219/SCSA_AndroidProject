@@ -87,7 +87,7 @@ public class NewsTest extends AppCompatActivity {
         // specify an adapter (see also next example)
         //mAdapter = new NewsAdapter(newsDataset);
         //recyclerView.setAdapter(mAdapter);
-        new NewsParser().execute("http://myhome.chosun.com/rss/www_section_rss.xml");
+        new NewsParser().execute(newsComs[0]);
 
     }
 
@@ -102,14 +102,14 @@ public class NewsTest extends AppCompatActivity {
                 int eventType = parser.getEventType();
                 News newN = null;
                 while(eventType != XmlPullParser.END_DOCUMENT) {
-                    Log.i("INFO", eventType + "<=eventType");
+
                     String name;
                     switch (eventType) {
                         case XmlPullParser.START_DOCUMENT :
                             break;
                         case XmlPullParser.START_TAG:
                             name = parser.getName();
-                            Log.i("INFO", name + "<=Name");
+
 
                             //Log.i("INFO", parser.nextText() + "<=name's text");
                             if (name.equalsIgnoreCase("item")) {
@@ -119,7 +119,7 @@ public class NewsTest extends AppCompatActivity {
                             else if(itemflag == 1){
                                 if (name.equalsIgnoreCase("title")) {
                                     String title = parser.nextText();
-                                    title.replaceAll("<[\\w]>", "");
+                                    title.replaceAll("<[^>]*>", "");
                                     newN.setNewsTitle(title);
                                 }
                                 else if(name.equalsIgnoreCase("description")) {
@@ -142,7 +142,7 @@ public class NewsTest extends AppCompatActivity {
                             break;
                     }
                         eventType = parser.next();
-                        Log.i("INFO", eventType + "<=eventType2");
+
                     }
 
                 }catch (Exception e) {

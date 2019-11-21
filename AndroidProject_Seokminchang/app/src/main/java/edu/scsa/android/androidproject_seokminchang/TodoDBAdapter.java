@@ -78,7 +78,7 @@ public class TodoDBAdapter {
     public Cursor fetchAllNotes() { //Cursor -> 가리키는 것.
 
         return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_TITLE,
-                KEY_BODY, KEY_FINISHED, KEY_DATE}, null, null, null, null, null);
+                KEY_BODY, KEY_FINISHED, KEY_DATE}, null, null, null, null, KEY_DATE + " ASC");
     }
 
     public Cursor fetchNote(long rowId) throws SQLException {

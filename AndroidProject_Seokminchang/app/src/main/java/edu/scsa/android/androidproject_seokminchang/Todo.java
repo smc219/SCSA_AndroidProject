@@ -21,6 +21,8 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
+import static android.view.MenuItem.SHOW_AS_ACTION_IF_ROOM;
+
 public class Todo extends AppCompatActivity{
     private static final int ACTIVITY_CREATE=0;
     private static final int ACTIVITY_EDIT=1;
@@ -130,7 +132,10 @@ public class Todo extends AppCompatActivity{
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(0, INSERT_ID, 0, "Add New To do");
+
+        menu.add(0, INSERT_ID + 1, 0, "Filter")
+                .setIcon(R.drawable.ic_filter_list_white_24dp).setShowAsActionFlags(SHOW_AS_ACTION_IF_ROOM);
+        menu.add(0, INSERT_ID, 0, "Add New To do").setIcon(R.drawable.ic_add_white_24dp).setShowAsActionFlags(SHOW_AS_ACTION_IF_ROOM);
         return super.onCreateOptionsMenu(menu);
     }
 

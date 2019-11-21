@@ -41,6 +41,7 @@ public class MouseCatch extends Activity {
 
     long starttime;
     int totscore;
+    int ototscore;
     Timer to; // 시간 초과시 게임 종료.
     Random r=new Random();  // 이미지 위치를 랜덤하게 발생시킬 객체
     TextView scoreBoard; // 점수 표시
@@ -60,7 +61,6 @@ public class MouseCatch extends Activity {
         setContentView(R.layout.activity_mouse_catch);
         f=(FrameLayout) findViewById(R.id.frame);
         params=new FrameLayout.LayoutParams(1, 1);
-        scoreBoard = findViewById(R.id.score);
 
         //디스플레이 크기 체크
         DisplayMetrics metrics = new DisplayMetrics();
@@ -75,6 +75,9 @@ public class MouseCatch extends Activity {
         mp=MediaPlayer.create(this, R.raw.bgm);
         mp.setLooping(true);
 
+        scoreBoard = findViewById(R.id.scoreBoard);
+
+
         init(8);
 
     }
@@ -86,11 +89,14 @@ public class MouseCatch extends Activity {
         score=0;
         threadEndFlag=true;
         this.nums=nums;
-
+        totscore = ototscore;
         to = new Timer();
         delay=(int)(delay*(10-level)/10.);
 
         f.removeAllViews();
+
+        f.addView(scoreBoard, 400, 100);
+        scoreBoard.setText("STAGE : " + level);
 
         //이미지 담을 배열 생성과 이미지 담기
         imgs=new ImageView[nums+cat];
@@ -152,24 +158,25 @@ public class MouseCatch extends Activity {
     View.OnClickListener  h=new View.OnClickListener() {
         public void onClick(View v) {   // 쥐를 잡았을 때
             score+=5;
-
+            totscore += 5;
             ImageView iv=(ImageView)v;
 
 
             pool.play(liveMouse, 1, 1, 0, 0, 1);  // 소리 내기
             iv.setVisibility(View.INVISIBLE);          // 이미지(쥐) 제거
-            scoreBoard.setText("SCORE : " + score);
+
             Toast.makeText(MouseCatch.this, "Die...."+score, Toast.LENGTH_LONG).show();
             if(score>=clearScore){   // 쥐를 다 잡았을때
                 threadEndFlag=false;
                 mt.cancel(true);
                 to.cancel();
                 AlertDialog.Builder dia=new AlertDialog.Builder(MouseCatch.this);
-                dia.setMessage("계속하시겠습니까?");
+                dia.setMessage("이번 스테이지를 클리어했습니다.\n 다음 스테이지로 넘어가겠습니까?");
                 dia.setCancelable(false);
                 dia.setPositiveButton("네", new OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         level++;
+                        ototscore = totscore;
                         to.cancel();
                         if(nums < 10) init(nums * 2);
                         if(clearScore < 60) clearScore *= 2;
@@ -194,7 +201,7 @@ public class MouseCatch extends Activity {
     View.OnClickListener  minus=new View.OnClickListener() {
         public void onClick(View v) {   // 쥐를 잡았을 때
             score-=10;
-
+            totscore -= 10;
             ImageView iv=(ImageView)v;
 
             pool.play(liveMouse, 1, 1, 0, 0, 1);  // 소리 내기
@@ -206,10 +213,11 @@ public class MouseCatch extends Activity {
                 mt.cancel(true);
                 to.cancel();
                 AlertDialog.Builder dia=new AlertDialog.Builder(MouseCatch.this);
-                dia.setMessage("계속하시겠습니까?");
+                dia.setMessage("이번 스테이지를 클리어했습니다.\n 다음 스테이지로 넘어가겠습니까?");
                 dia.setPositiveButton("네", new OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         level++;
+                        ototscore = totscore;
                         if(nums < 10) init(nums * 2);
                         if(clearScore < 60) clearScore *= 2;
                         else init(nums);
@@ -229,7 +237,7 @@ public class MouseCatch extends Activity {
     View.OnClickListener  m2Catch=new View.OnClickListener() {
         public void onClick(View v) {   // 쥐를 잡았을 때
             score+=10;
-
+            totscore += 10;
             ImageView iv=(ImageView)v;
 
             //pool.play(liveMouse, 1, 1, 0, 0, 1);  // 소리 내기
@@ -241,10 +249,11 @@ public class MouseCatch extends Activity {
                 mt.cancel(true);
                 to.cancel();
                 AlertDialog.Builder dia=new AlertDialog.Builder(MouseCatch.this);
-                dia.setMessage("계속하시겠습니까?");
+                dia.setMessage("이번 스테이지를 클리어했습니다.\n 다음 스테이지로 넘어가겠습니까?");
                 dia.setPositiveButton("네", new OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         level++;
+                        ototscore = totscore;
                         if(nums < 10) init(nums * 2);
                         if(clearScore < 60) clearScore *= 2;
                         else init(nums);
@@ -305,7 +314,7 @@ public class MouseCatch extends Activity {
                         to.cancel();
                         mt.cancel(true);
                         AlertDialog.Builder dia=new AlertDialog.Builder(MouseCatch.this);
-                        dia.setMessage("Time Over");
+                        dia.setMessage("Time Over\n 당신의 점수는 " + totscore + "점입니다.");
                         dia.setPositiveButton("다시하기", new OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 init(nums);
