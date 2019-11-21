@@ -34,4 +34,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void moveToNews(View view) {
+        Intent i = new Intent(MainActivity.this, NewsTest.class);
+        startActivity(i);
+    }
 }

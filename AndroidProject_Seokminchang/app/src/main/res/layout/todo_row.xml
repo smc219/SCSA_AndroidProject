@@ -8,7 +8,7 @@
         android:id="@+id/item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
+        android:textSize="21sp"
         android:layout_weight="1"
-        android:text="" />
+        android:text="TextView" />
 </LinearLayout>

@@ -35,7 +35,8 @@ public class Todo extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo);
         lv = findViewById(R.id.todoLv);
-      //  getActionBar().setTitle("To Do List");
+        setTitle("To Do List");
+
        // getActionBar().setIcon(null);
         todoDBAdapter = new TodoDBAdapter(this);
         todoDBAdapter.open();
@@ -97,9 +98,13 @@ public class Todo extends AppCompatActivity{
 
                 //String strFV = cursor.getString(3);
                 String Title = cursor.getString(cursor.getColumnIndex(TodoDBAdapter.KEY_TITLE));
+                String strDate = cursor.getString(cursor.getColumnIndex(TodoDBAdapter.KEY_DATE));
+
                 int fV = cursor.getInt(cursor.getColumnIndex(TodoDBAdapter.KEY_FINISHED));
-                TextView tv = view.findViewById(R.id.item);
+                TextView tv = view.findViewById(R.id.textView);
+                TextView tv2 = view.findViewById(R.id.textView2);
                 tv.setText(Title);
+                tv2.setText(strDate);
                 if (fV > 0) {
                     tv.setTextColor(Color.GRAY);
                     tv.setPaintFlags(tv.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
@@ -113,11 +118,11 @@ public class Todo extends AppCompatActivity{
     public void fillData() {
         Cursor todoCursor =todoDBAdapter.fetchAllNotes();
         startManagingCursor(todoCursor);
-        String[] from = new String[]{TodoDBAdapter.KEY_TITLE};
-        int[] to =new int[]{R.id.item};
+        String[] from = new String[]{TodoDBAdapter.KEY_TITLE, TodoDBAdapter.KEY_DATE};
+        int[] to =new int[]{R.id.textView, R.id.textView2};
 
         noteAdapter todos;
-        todos = new noteAdapter(this, R.layout.todo_row, todoCursor, from, to);
+        todos = new noteAdapter(this, R.layout.todo_row_ver2, todoCursor, from, to);
 
         lv.setAdapter(todos);
     }

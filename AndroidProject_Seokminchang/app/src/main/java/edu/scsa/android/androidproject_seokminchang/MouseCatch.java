@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Random;
@@ -27,15 +28,22 @@ public class MouseCatch extends Activity {
     int delay=1200;  // 게임 속도 조절
     static boolean threadEndFlag=true; // 쓰레드 끄기
     MouseTask mt;				// 쓰레드 구현
-    int clearScore = 15;
+    int clearScore = 30;
     int myWidth;  // 내 폰의 너비
     int myHeight; // 내 폰의 높이
     int imgWidth=150;  //그림 크기
     int imgHeight=150;//그림 크기
+
+    //캐릭터 구분용
+    public final int MOUSE_ID = 0;
+    public final int CAT_ID = 1;
+    public final int MOUSE2_ID = 2;
+
     long starttime;
+    int totscore;
     Timer to; // 시간 초과시 게임 종료.
     Random r=new Random();  // 이미지 위치를 랜덤하게 발생시킬 객체
-
+    TextView scoreBoard; // 점수 표시
     SoundPool pool;   // 소리
     int liveMouse;    // 소리
     MediaPlayer mp;   // 소리
@@ -52,7 +60,7 @@ public class MouseCatch extends Activity {
         setContentView(R.layout.activity_mouse_catch);
         f=(FrameLayout) findViewById(R.id.frame);
         params=new FrameLayout.LayoutParams(1, 1);
-
+        scoreBoard = findViewById(R.id.score);
 
         //디스플레이 크기 체크
         DisplayMetrics metrics = new DisplayMetrics();
@@ -81,7 +89,7 @@ public class MouseCatch extends Activity {
 
         to = new Timer();
         delay=(int)(delay*(10-level)/10.);
-        if(clearScore < 60) clearScore *= 2;
+
         f.removeAllViews();
 
         //이미지 담을 배열 생성과 이미지 담기
@@ -92,6 +100,7 @@ public class MouseCatch extends Activity {
             f.addView(iv, params);  // 화면에 표시
             imgs[i]=iv;     // 배열에 담기
             iv.setOnClickListener(h);  // 이벤트 등록
+            iv.setId(MOUSE_ID);
 
         }
         for(int i=nums-mouse2; i<nums; i++){
@@ -100,6 +109,7 @@ public class MouseCatch extends Activity {
             f.addView(iv, params);  // 화면에 표시
             imgs[i]=iv;     // 배열에 담기
             iv.setOnClickListener(m2Catch);  // 이벤트 등록
+            iv.setId(MOUSE2_ID);
 
         }
 
@@ -110,6 +120,7 @@ public class MouseCatch extends Activity {
             f.addView(iv, params);  // 화면에 표시
             imgs[i]=iv;     // 배열에 담기
             iv.setOnClickListener(minus);  // 이벤트 등록
+            iv.setId(CAT_ID);
         }
 
 
@@ -144,14 +155,15 @@ public class MouseCatch extends Activity {
 
             ImageView iv=(ImageView)v;
 
+
             pool.play(liveMouse, 1, 1, 0, 0, 1);  // 소리 내기
             iv.setVisibility(View.INVISIBLE);          // 이미지(쥐) 제거
-
+            scoreBoard.setText("SCORE : " + score);
             Toast.makeText(MouseCatch.this, "Die...."+score, Toast.LENGTH_LONG).show();
             if(score>=clearScore){   // 쥐를 다 잡았을때
                 threadEndFlag=false;
                 mt.cancel(true);
-
+                to.cancel();
                 AlertDialog.Builder dia=new AlertDialog.Builder(MouseCatch.this);
                 dia.setMessage("계속하시겠습니까?");
                 dia.setCancelable(false);
@@ -160,6 +172,7 @@ public class MouseCatch extends Activity {
                         level++;
                         to.cancel();
                         if(nums < 10) init(nums * 2);
+                        if(clearScore < 60) clearScore *= 2;
                         else init(nums);
                     }
                 });
@@ -198,6 +211,7 @@ public class MouseCatch extends Activity {
                     public void onClick(DialogInterface dialog, int which) {
                         level++;
                         if(nums < 10) init(nums * 2);
+                        if(clearScore < 60) clearScore *= 2;
                         else init(nums);
                     }
                 });
@@ -222,6 +236,27 @@ public class MouseCatch extends Activity {
             iv.setVisibility(View.INVISIBLE);          // 이미지(쥐) 제거
 
             Toast.makeText(MouseCatch.this, "Die...."+score, Toast.LENGTH_LONG).show();
+            if(score>=clearScore){   // 쥐를 다 잡았을때
+                threadEndFlag=false;
+                mt.cancel(true);
+                to.cancel();
+                AlertDialog.Builder dia=new AlertDialog.Builder(MouseCatch.this);
+                dia.setMessage("계속하시겠습니까?");
+                dia.setPositiveButton("네", new OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        level++;
+                        if(nums < 10) init(nums * 2);
+                        if(clearScore < 60) clearScore *= 2;
+                        else init(nums);
+                    }
+                });
+                dia.setNegativeButton("아니오", new OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                });
+                dia.show();
+            }
 
         }
     };
@@ -297,8 +332,8 @@ public class MouseCatch extends Activity {
         public void run() {
             long millis = System.currentTimeMillis() - starttime;
             int seconds = (int) (millis / 1000);
-            int minutes = seconds / 60;
-            seconds     = seconds % 60;
+            //int minutes = seconds / 60;
+            //seconds     = seconds % 60;
             Log.e("timerLeft",  "Left Time : " + String.format("%02d", seconds));
 
         }
