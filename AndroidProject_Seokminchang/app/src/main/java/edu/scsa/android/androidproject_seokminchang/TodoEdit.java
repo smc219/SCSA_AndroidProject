@@ -36,6 +36,7 @@ public class TodoEdit extends AppCompatActivity {
         mDbHelper.open();
         setContentView(R.layout.activity_todo_edit);
         // 타이틀과 바디를 찾아본다.
+        setTitle("To do List");
         titleEt = findViewById(R.id.titleEt);
         bodyEt = findViewById(R.id.bodyEt);
         dateEt = findViewById(R.id.dateEt);
@@ -152,6 +153,5 @@ public class TodoEdit extends AppCompatActivity {
             mDbHelper.updateNote(mRowId, title, body, fValue, updateDate);
         }
     }
-
 
 }

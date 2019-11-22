@@ -199,7 +199,6 @@ public class Todo extends AppCompatActivity{
                 createNote();
                 return true;
             case INSERT_ID + 1:
-                searchNote();
                 return true;
             case INSERT_ID + 2:
                 todoDBAdapter.deleteTodo();
@@ -210,14 +209,11 @@ public class Todo extends AppCompatActivity{
         return super.onOptionsItemSelected(item);
     }
 
-    private void searchNote() {
-
-    }
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         menu.add(0, DELETE_ID, 0, "Delete");
-        menu.add(2, FIN_ID, 0, "Finish");
+        menu.add(2, FIN_ID, 0, "Change Status");
 
         super.onCreateContextMenu(menu, v, menuInfo);
 
@@ -230,7 +226,8 @@ public class Todo extends AppCompatActivity{
             case FIN_ID:
                 info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
                 Log.i("CMENUINFO", "CMENUINFO + " + info.id);
-                todoDBAdapter.updateNote(info.id, 1);
+                int value = todoDBAdapter.finReturn(info.id);
+                todoDBAdapter.updateNote(info.id, value ^ 1);
                 fillByTab();
                 break;
             case DELETE_ID:
@@ -259,7 +256,7 @@ public class Todo extends AppCompatActivity{
         tl.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                Log.i("INFO", "Called?");
+
                 int selected = tab.getPosition();
                 switch (selected) {
                     case 0:

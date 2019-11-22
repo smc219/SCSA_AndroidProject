@@ -1,6 +1,7 @@
 package edu.scsa.android.androidproject_seokminchang;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         mbtn = findViewById(R.id.mouse);
         tdbutton = findViewById(R.id.todo);
         newsButton = findViewById(R.id.news);
+
         setTitle("자기관리는 알아서!");
         mbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,8 +45,5 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void moveToNews(View view) {
-        Intent i = new Intent(MainActivity.this, NewsTest.class);
-        startActivity(i);
-    }
+
 }

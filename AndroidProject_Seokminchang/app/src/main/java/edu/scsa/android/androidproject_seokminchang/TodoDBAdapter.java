@@ -121,9 +121,7 @@ public class TodoDBAdapter {
     public boolean updateNote(long rowId, int fstatus) {
         ContentValues args = new ContentValues();
         Log.i("INFO", "rowId" + rowId);
-//        Cursor updateC = mDb.query(true, DATABASE_TABLE, new String[] {KEY_ROWID,
-//                                KEY_TITLE, KEY_BODY, KEY_FINISHED}, KEY_ROWID + "=" + rowId, null,
-//                        null, null, null, null);
+
         Cursor updateC = fetchNote(rowId);
         String title = updateC.getString(1);
         String body = updateC.getString(updateC.getColumnIndex(KEY_BODY));
@@ -132,6 +130,11 @@ public class TodoDBAdapter {
         args.put(KEY_BODY, body);
         args.put("finished", fstatus);
         return mDb.update(DATABASE_TABLE, args, KEY_ROWID + "=" + rowId, null) > 0;
+    }
+
+    public int finReturn(long rowId) {
+        Cursor c = fetchNote(rowId);
+        return c.getInt(c.getColumnIndexOrThrow(KEY_FINISHED));
     }
 
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AndroidProject_Seokminchang</string>
+    <string name="app_name">sds_smc</string>
     <string name="title">Title</string>
     <string name="body">Body</string>
     <string name="addBut">ADD</string>
@@ -11,7 +11,7 @@
     <string name="title_notifications">Notifications</string>
     <string name="score">SCORE :</string>
     <string name="todo">To do</string>
-    <string name="mouse">쥐 잡기 게임</string>
+    <string name="mouse">잠깨기</string>
     <string name="news">뉴스 보기</string>
     <string name="chosunStr">조선</string>
     <string name="khStr">경향</string>

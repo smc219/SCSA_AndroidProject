@@ -45,7 +45,8 @@ public class MouseCatch extends Activity {
     int ototscore;
     Timer to; // 시간 초과시 게임 종료.
     Random r=new Random();  // 이미지 위치를 랜덤하게 발생시킬 객체
-    TextView scoreBoard; // 점수 표시
+    TextView scoreBoard; // 점수 표시z
+    TextView leftTime;
     SoundPool pool;   // 소리
     int liveMouse;    // 소리
     int liveCat; // 고양이소리
