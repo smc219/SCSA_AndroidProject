@@ -119,6 +119,7 @@ public class Todo extends AppCompatActivity{
             this.mContext = context;
             this.inflater=LayoutInflater.from(context);
             this.cr=c;
+
         }
 
         @Override
@@ -293,9 +294,6 @@ public class Todo extends AppCompatActivity{
         if (selected != 0) fillData(selected-1);
         else fillData();
     }
-
-
-
 
 
 }

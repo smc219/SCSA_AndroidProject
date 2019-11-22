@@ -209,7 +209,7 @@ public class MouseCatch extends Activity {
             totscore -= 10;
             ImageView iv=(ImageView)v;
 
-            pool.play(liveMouse, 1, 1, 0, 0, 1);  // 소리 내기
+            pool.play(liveCat, 1, 1, 0, 0, 2);  // 소리 내기
             iv.setVisibility(View.INVISIBLE);          // 이미지(쥐) 제거
 
             Toast.makeText(MouseCatch.this, "Poor cat...."+score, Toast.LENGTH_LONG).show();
@@ -246,7 +246,7 @@ public class MouseCatch extends Activity {
             totscore += 10;
             ImageView iv=(ImageView)v;
 
-            //pool.play(liveMouse, 1, 1, 0, 0, 1);  // 소리 내기
+            pool.play(liveMouse, 1, 1, 0, 0, 1);  // 소리 내기
             iv.setVisibility(View.INVISIBLE);          // 이미지(쥐) 제거
 
             Toast.makeText(MouseCatch.this, "Die...."+score, Toast.LENGTH_LONG).show();
