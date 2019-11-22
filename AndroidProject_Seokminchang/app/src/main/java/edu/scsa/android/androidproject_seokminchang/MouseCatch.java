@@ -26,6 +26,7 @@ public class MouseCatch extends Activity {
     FrameLayout.LayoutParams params;
     int score=0;   //잡은 쥐 개수를 저장할 변수
     int delay=1200;  // 게임 속도 조절
+    int oDelay = 1200;
     static boolean threadEndFlag=true; // 쓰레드 끄기
     MouseTask mt;				// 쓰레드 구현
     int clearScore = 30;
@@ -47,6 +48,7 @@ public class MouseCatch extends Activity {
     TextView scoreBoard; // 점수 표시
     SoundPool pool;   // 소리
     int liveMouse;    // 소리
+    int liveCat; // 고양이소리
     MediaPlayer mp;   // 소리
 
     int x=200;        //시작위치
@@ -72,6 +74,7 @@ public class MouseCatch extends Activity {
         //사운드 셋팅
         pool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
         liveMouse = pool.load(this, R.raw.mouse_scream, 1);
+        liveCat = pool.load(this, R.raw.yaaaong, 1);
         mp=MediaPlayer.create(this, R.raw.bgm);
         mp.setLooping(true);
 
@@ -91,6 +94,7 @@ public class MouseCatch extends Activity {
         this.nums=nums;
         totscore = ototscore;
         to = new Timer();
+        delay = oDelay;
         delay=(int)(delay*(10-level)/10.);
 
         f.removeAllViews();
@@ -171,12 +175,13 @@ public class MouseCatch extends Activity {
                 mt.cancel(true);
                 to.cancel();
                 AlertDialog.Builder dia=new AlertDialog.Builder(MouseCatch.this);
-                dia.setMessage("이번 스테이지를 클리어했습니다.\n 다음 스테이지로 넘어가겠습니까?");
+                dia.setMessage("이번 스테이지를 클리어했습니다.\n다음 스테이지로 넘어가겠습니까?");
                 dia.setCancelable(false);
                 dia.setPositiveButton("네", new OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         level++;
                         ototscore = totscore;
+                        oDelay = delay;
                         to.cancel();
                         if(nums < 10) init(nums * 2);
                         if(clearScore < 60) clearScore *= 2;
@@ -213,11 +218,12 @@ public class MouseCatch extends Activity {
                 mt.cancel(true);
                 to.cancel();
                 AlertDialog.Builder dia=new AlertDialog.Builder(MouseCatch.this);
-                dia.setMessage("이번 스테이지를 클리어했습니다.\n 다음 스테이지로 넘어가겠습니까?");
+                dia.setMessage("이번 스테이지를 클리어했습니다.\n다음 스테이지로 넘어가겠습니까?");
                 dia.setPositiveButton("네", new OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         level++;
                         ototscore = totscore;
+                        oDelay = delay;
                         if(nums < 10) init(nums * 2);
                         if(clearScore < 60) clearScore *= 2;
                         else init(nums);
@@ -249,11 +255,12 @@ public class MouseCatch extends Activity {
                 mt.cancel(true);
                 to.cancel();
                 AlertDialog.Builder dia=new AlertDialog.Builder(MouseCatch.this);
-                dia.setMessage("이번 스테이지를 클리어했습니다.\n 다음 스테이지로 넘어가겠습니까?");
+                dia.setMessage("이번 스테이지를 클리어했습니다.\n다음 스테이지로 넘어가겠습니까?");
                 dia.setPositiveButton("네", new OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         level++;
                         ototscore = totscore;
+                        oDelay = delay;
                         if(nums < 10) init(nums * 2);
                         if(clearScore < 60) clearScore *= 2;
                         else init(nums);
@@ -314,7 +321,7 @@ public class MouseCatch extends Activity {
                         to.cancel();
                         mt.cancel(true);
                         AlertDialog.Builder dia=new AlertDialog.Builder(MouseCatch.this);
-                        dia.setMessage("Time Over\n 당신의 점수는 " + totscore + "점입니다.");
+                        dia.setMessage("Time Over\n당신의 최종 점수는 " + totscore + "점입니다.");
                         dia.setPositiveButton("다시하기", new OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 init(nums);

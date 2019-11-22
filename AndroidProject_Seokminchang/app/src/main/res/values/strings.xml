@@ -17,4 +17,8 @@
     <string name="khStr">경향</string>
     <string name="joinsStr">중앙</string>
     <string name="haniStr">한겨레</string>
+    <string name="todo_all">ALL</string>
+    <string name="todo_notFinished">남은 일들</string>
+    <string name="todo_finished">끝난 일들</string>
+    <string name="allNews">All</string>
 </resources>

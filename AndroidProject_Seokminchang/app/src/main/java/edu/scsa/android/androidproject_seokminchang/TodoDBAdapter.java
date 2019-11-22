@@ -75,6 +75,11 @@ public class TodoDBAdapter {
         return mDb.delete(DATABASE_TABLE, KEY_ROWID + "=" + rowId, null) > 0;
     }
 
+    public boolean deleteTodo() {
+
+        return mDb.delete(DATABASE_TABLE, KEY_FINISHED + ">"+0  , null) > 0;
+    }
+
     public Cursor fetchAllNotes() { //Cursor -> 가리키는 것.
 
         return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_TITLE,
@@ -93,6 +98,14 @@ public class TodoDBAdapter {
         }
         return mCursor; //KEY_ROWID ->
 
+    }
+
+    public Cursor fetchQueryNotes(int fValue) { //Cursor -> 가리키는 것.
+
+        String filterCond = KEY_FINISHED + "=" + fValue;
+
+        return mDb.query(DATABASE_TABLE, new String[] {KEY_ROWID, KEY_TITLE,
+                KEY_BODY, KEY_FINISHED, KEY_DATE}, filterCond, null, null, null, KEY_DATE + " ASC");
     }
 
 

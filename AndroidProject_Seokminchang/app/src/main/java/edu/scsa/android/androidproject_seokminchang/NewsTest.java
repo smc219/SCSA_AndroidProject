@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class NewsTest extends AppCompatActivity {
 
@@ -50,7 +51,6 @@ public class NewsTest extends AppCompatActivity {
 
             switch (item.getItemId()) {
 // 추후에 다시 살려주기!
-
                 case R.id.chosun:
                     new NewsParser().execute(newsComs[0]);
                     return true;
@@ -72,7 +72,7 @@ public class NewsTest extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_test);
-
+        setTitle("언론사별 주요뉴스");
         mTextMessage = (TextView) findViewById(R.id.message);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -92,6 +92,7 @@ public class NewsTest extends AppCompatActivity {
     }
 
     class NewsParser extends AsyncTask<String, String, ArrayList<News>> {
+
         XmlPullParser parser = Xml.newPullParser();
         ArrayList<News> newsList = new ArrayList<>();
         @Override
@@ -110,8 +111,7 @@ public class NewsTest extends AppCompatActivity {
                         case XmlPullParser.START_TAG:
                             name = parser.getName();
 
-
-                            //Log.i("INFO", parser.nextText() + "<=name's text");
+                            Log.i("INFO", name + "<=name's text");
                             if (name.equalsIgnoreCase("item")) {
                                 itemflag = 1;
                                 newN = new News();
@@ -129,12 +129,18 @@ public class NewsTest extends AppCompatActivity {
                                     newN.setNewsDesc(desc);
                                 }
                                 else if(name.equalsIgnoreCase("link")) {
+                                   // Log.i("INFO", "hi link!");
                                     newN.setNewsLink(parser.nextText());
+                                }
+                                else if(name.equalsIgnoreCase("date")) {
+                                    Log.i("INFO", "hi!");
+                                    String date = parser.nextText();
+                                    newN.setNewsDate(date);
+                                    Log.i("DATE", date);
                                 }
                             }
                             break;
                         case XmlPullParser.END_TAG:
-
                             name = parser.getName();
                             if (name.equalsIgnoreCase("item") && newN != null) {
                                 newsList.add(newN);
@@ -148,12 +154,14 @@ public class NewsTest extends AppCompatActivity {
                 }catch (Exception e) {
                     e.printStackTrace();
             }
+
                 return newsList;
             }
 
         @Override
         protected void onPostExecute(ArrayList<News> news) {
             super.onPostExecute(news);
+
 
             mAdapter = new NewsAdapter(news);
             recyclerView.setAdapter(mAdapter);

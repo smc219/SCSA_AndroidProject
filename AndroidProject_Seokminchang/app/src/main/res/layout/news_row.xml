@@ -45,7 +45,7 @@
 
                     <TextView
                         android:id="@+id/newsTitle"
-                        android:layout_width="255dp"
+                        android:layout_width="252dp"
                         android:layout_height="102dp"
                         android:layout_weight="1"
                         android:ellipsize="end"

@@ -20,6 +20,7 @@ import java.util.ArrayList;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.MyViewHolder> {
 //    private String[] mDataset;
+
     private ArrayList<News> mDataset;
     int[] newsCom = {R.drawable.chosun, R.drawable.kh, R.drawable.hani, R.drawable.ja};
 

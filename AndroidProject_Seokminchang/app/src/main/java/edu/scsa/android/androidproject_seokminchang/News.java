@@ -5,6 +5,10 @@ public class News {
     private String newsTitle;
     private String newsDesc;
     private String newsLink;
+    private String newsDate;
+
+
+
 
 
     public News() {
@@ -39,4 +43,14 @@ public class News {
     public void setNewsLink(String newsLink) {
         this.newsLink = newsLink;
     }
+
+    public String getNewsDate() {
+        return newsDate;
+    }
+
+    public void setNewsDate(String newsDate) {
+        this.newsDate = newsDate;
+    }
+
+
 }
